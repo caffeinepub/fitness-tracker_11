@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "A workout and fitness app or website",
+  "architectural_notes": [
+    "Consider payment gateway integration for membership system",
+    "Design scalable video content delivery system",
+    "Plan for multi-age-group UI/UX accessibility"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Rest timer icon with stopwatch design in energetic orange theme (rest-timer-icon.dim_64x64.png)\n- Workout plan icon showing stacked documents or checklist (workout-plan-icon.dim_64x64.png)\n- Home workout icon with house and fitness symbols (home-workout-icon.dim_64x64.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-workout-logging-system-where-users-can-record-exercises-with-sets-reps-and-weight",
+      "title": "Create a workout logging system where users can record exercises with sets, reps, and weight",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-workout-history-view-that-displays-past-workouts-in-chronological-order",
+      "title": "Implement a workout history view that displays past workouts in chronological order",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-exercise-library-with-common-exercises-categorized-by-muscle-group",
+      "title": "Create an exercise library with common exercises categorized by muscle group",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-progress-tracking-that-shows-workout-statistics-over-time-including-total-workouts-exercises-completed-and-volume-lifted",
+      "title": "Add progress tracking that shows workout statistics over time including total workouts, exercises completed, and volume lifted",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-vibrant-energetic-interface-with-a-creative-visual-theme-featuring-bold-colors-dynamic-typography-and-motivational-styling-that-encourages-fitness-activity",
+      "title": "Design a vibrant, energetic interface with a creative visual theme featuring bold colors, dynamic typography, and motivational styling that encourages fitness activity",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-generated-fitness-themed-images-including-hero-background-workout-category-icons-and-motivational-graphics-as-static-assets-from-frontend-public-assets-generated",
+      "title": "Display generated fitness-themed images including hero background, workout category icons, and motivational graphics as static assets from frontend/public/assets/generated",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-rest-timer-feature-that-allows-users-to-set-and-track-rest-periods-of-1-2-minutes-between-sets-during-workout-logging",
+      "title": "Add a rest timer feature that allows users to set and track rest periods of 1-2 minutes between sets during workout logging",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-workout-plan-management-system-where-users-can-create-save-and-follow-structured-workout-plans-instead-of-only-logging-individual-workouts",
+      "title": "Create a workout plan management system where users can create, save, and follow structured workout plans instead of only logging individual workouts",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-the-interface-to-be-accessible-and-intuitive-for-users-aged-10-60-years-with-appropriate-font-sizes-contrast-ratios-and-simplified-navigation-patterns",
+      "title": "Design the interface to be accessible and intuitive for users aged 10-60 years with appropriate font sizes, contrast ratios, and simplified navigation patterns",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-home-workout-category-to-the-exercise-library-with-bodyweight-exercises-suitable-for-home-training-without-equipment",
+      "title": "Add a home workout category to the exercise library with bodyweight exercises suitable for home training without equipment",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add rest timer (1-2 minutes) between sets",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create workout plan management system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add membership/subscription system with video workout content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add home workout routines category",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Make interface accessible for ages 10-60 years",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Fitness Tracker",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

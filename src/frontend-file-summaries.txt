@@ -1,0 +1,16 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining routes for dashboard, log workout, history, and exercise library pages wrapped in a Layout component.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for all backend operations including workout history, exercise library, progress stats, workout plans, and mutations for logging workouts, adding exercises, and creating workout plans with proper type safety.",
+  "frontend/src/components/Layout.tsx": "Root layout component with energetic header navigation featuring the FitTrack brand, responsive navigation menu, and footer with caffeine.ai attribution.",
+  "frontend/src/pages/Dashboard.tsx": "Main dashboard page with hero section using fitness background image, progress statistics cards, and quick action buttons for logging workouts and viewing history.",
+  "frontend/src/components/ProgressDashboard.tsx": "Statistics dashboard component displaying total workouts, workout plans, and total volume lifted in vibrant gradient cards with icons, replacing the non-existent totalExercises with totalPlans.",
+  "frontend/src/pages/LogWorkout.tsx": "Workout logging page wrapper that displays the WorkoutLogger component with a bold header and motivational styling.",
+  "frontend/src/components/WorkoutLogger.tsx": "Interactive workout logging form with exercise autocomplete, dynamic set management, and category tracking, now properly including the category field required by the Exercise type.",
+  "frontend/src/pages/History.tsx": "Workout history page wrapper that displays the WorkoutHistoryList component with an energetic header design.",
+  "frontend/src/components/WorkoutHistoryList.tsx": "Displays chronologically sorted workout history with date, exercises, sets, reps, weight, and calculated volume per workout in card format.",
+  "frontend/src/pages/ExerciseLibrary.tsx": "Exercise library page wrapper that displays the ExerciseLibrary component with bold header styling.",
+  "frontend/src/components/ExerciseLibrary.tsx": "Exercise library browser with search, muscle group filtering (including Home Workout category), and ability to add custom exercises with category selection, featuring 10+ bodyweight home workout exercises and improved accessibility with larger text sizes.",
+  "frontend/src/index.css": "Global styles with energetic OKLCH color system featuring vibrant orange, red, and yellow palette for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended color tokens, bold typography settings, custom border radius values, and enhanced shadows for the energetic fitness theme.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentityProvider, and Sonner toast notifications setup."
+}

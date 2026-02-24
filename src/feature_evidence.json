@@ -1,0 +1,80 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-rest-timer-feature-that-allows-users-to-set-and-track-rest-periods-of-1-2-minutes-between-sets-during-workout-logging",
+      "featureTitle": "Add a rest timer feature that allows users to set and track rest periods of 1-2 minutes between sets during workout logging",
+      "files": [
+        "frontend/src/components/WorkoutLogger.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-workout-plan-management-system-where-users-can-create-save-and-follow-structured-workout-plans-instead-of-only-logging-individual-workouts",
+      "featureTitle": "Create a workout plan management system where users can create, save, and follow structured workout plans instead of only logging individual workouts",
+      "files": [
+        "frontend/src/components/WorkoutLogger.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-the-interface-to-be-accessible-and-intuitive-for-users-aged-10-60-years-with-appropriate-font-sizes-contrast-ratios-and-simplified-navigation-patterns",
+      "featureTitle": "Design the interface to be accessible and intuitive for users aged 10-60 years with appropriate font sizes, contrast ratios, and simplified navigation patterns",
+      "files": [
+        "frontend/src/components/ExerciseLibrary.tsx",
+        "frontend/src/components/ProgressDashboard.tsx",
+        "frontend/src/components/WorkoutLogger.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-home-workout-category-to-the-exercise-library-with-bodyweight-exercises-suitable-for-home-training-without-equipment",
+      "featureTitle": "Add a home workout category to the exercise library with bodyweight exercises suitable for home training without equipment",
+      "files": [
+        "frontend/src/components/ExerciseLibrary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

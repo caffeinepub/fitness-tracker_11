@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        
+        /* Energetic Orange/Red/Yellow Palette - Light Mode */
+        --background: 0.98 0 0;
+        --foreground: 0.15 0 0;
+        
+        --card: 1 0 0;
+        --card-foreground: 0.15 0 0;
+        
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0 0;
+        
+        /* Primary: Vibrant Orange */
+        --primary: 0.65 0.22 35;
+        --primary-foreground: 0.98 0 0;
+        
+        /* Secondary: Bold Red */
+        --secondary: 0.55 0.24 15;
+        --secondary-foreground: 0.98 0 0;
+        
+        /* Muted */
+        --muted: 0.95 0.01 80;
+        --muted-foreground: 0.45 0.02 60;
+        
+        /* Accent: Electric Yellow */
+        --accent: 0.75 0.18 85;
+        --accent-foreground: 0.15 0 0;
+        
+        /* Destructive */
+        --destructive: 0.55 0.25 10;
+        --destructive-foreground: 0.98 0 0;
+        
+        /* Border & Input */
+        --border: 0.90 0.01 70;
+        --input: 0.90 0.01 70;
+        --ring: 0.65 0.22 35;
+        
+        /* Charts */
+        --chart-1: 0.65 0.22 35;
+        --chart-2: 0.55 0.24 15;
+        --chart-3: 0.75 0.18 85;
+        --chart-4: 0.70 0.20 50;
+        --chart-5: 0.60 0.23 25;
+    }
+
+    .dark {
+        /* Dark Mode - Energetic with high contrast */
+        --background: 0.12 0.02 20;
+        --foreground: 0.98 0 0;
+        
+        --card: 0.18 0.03 25;
+        --card-foreground: 0.98 0 0;
+        
+        --popover: 0.15 0.02 22;
+        --popover-foreground: 0.98 0 0;
+        
+        /* Primary: Bright Orange */
+        --primary: 0.70 0.24 40;
+        --primary-foreground: 0.12 0.02 20;
+        
+        /* Secondary: Vibrant Red */
+        --secondary: 0.60 0.26 18;
+        --secondary-foreground: 0.98 0 0;
+        
+        /* Muted */
+        --muted: 0.25 0.03 30;
+        --muted-foreground: 0.65 0.05 50;
+        
+        /* Accent: Bright Yellow */
+        --accent: 0.80 0.20 90;
+        --accent-foreground: 0.12 0.02 20;
+        
+        /* Destructive */
+        --destructive: 0.60 0.27 12;
+        --destructive-foreground: 0.98 0 0;
+        
+        /* Border & Input */
+        --border: 0.30 0.04 35;
+        --input: 0.30 0.04 35;
+        --ring: 0.70 0.24 40;
+        
+        /* Charts */
+        --chart-1: 0.70 0.24 40;
+        --chart-2: 0.60 0.26 18;
+        --chart-3: 0.80 0.20 90;
+        --chart-4: 0.75 0.22 55;
+        --chart-5: 0.65 0.25 30;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}

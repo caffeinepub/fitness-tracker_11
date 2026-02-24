@@ -1,0 +1,103 @@
+{
+  "kind": "build_request",
+  "title": "Add rest timer, workout plans, and age-accessible interface improvements",
+  "projectName": "FitTrack Pro",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Add a rest timer feature that allows users to set and track rest periods of 1-2 minutes between sets during workout logging",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Maintain the add 1 or 2 min rest time per set"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can start a rest timer after completing a set",
+        "Timer displays countdown from 1 or 2 minutes (user selectable)",
+        "Visual and/or audio notification when rest period completes",
+        "Timer integrates seamlessly into the WorkoutLogger component"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a workout plan management system where users can create, save, and follow structured workout plans instead of only logging individual workouts",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "add only workout plan"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can create named workout plans with predefined exercises, sets, and reps",
+        "Users can view a list of their saved workout plans",
+        "Users can select a workout plan to follow during workout logging",
+        "Backend stores workout plans with stable types and CRUD operations"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Design the interface to be accessible and intuitive for users aged 10-60 years with appropriate font sizes, contrast ratios, and simplified navigation patterns",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "change like anyone use 10 to 60 years person"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Font sizes are large enough for readability (minimum 16px base)",
+        "Color contrast meets WCAG AA standards",
+        "Navigation is straightforward with clear labels and icons",
+        "Interactive elements have sufficient touch target sizes (minimum 44x44px)"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add a home workout category to the exercise library with bodyweight exercises suitable for home training without equipment",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "add home workout easy aap"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Exercise library includes a 'Home Workout' muscle group category",
+        "Category contains at least 10 bodyweight exercises (push-ups, squats, planks, etc.)",
+        "Users can filter exercises to show only home workout options",
+        "Backend Exercise type supports categorization for home workouts"
+      ]
+    }
+  ],
+  "constraints": [
+    "Maintain the existing single-actor backend architecture",
+    "Do not modify immutable frontend paths: useInternetIdentity hooks, useActor.ts, main.tsx, components/ui",
+    "Preserve existing workout logging, history, and exercise library functionality"
+  ],
+  "nonGoals": [
+    "Video content streaming or storage (membership video feature deferred)",
+    "Payment processing or subscription billing integration",
+    "App store publishing or mobile native app conversion",
+    "Real-time multiplayer or social features"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Rest timer icon with stopwatch design in energetic orange theme (rest-timer-icon.dim_64x64.png)",
+      "Workout plan icon showing stacked documents or checklist (workout-plan-icon.dim_64x64.png)",
+      "Home workout icon with house and fitness symbols (home-workout-icon.dim_64x64.png)"
+    ],
+    "edits": []
+  }
+}

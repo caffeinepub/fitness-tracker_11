@@ -1,0 +1,170 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add rest timer, workout plans, and age-accessible interface improvements",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "summary": "Add rest timer feature to workout logging with 1-2 minute countdown and notifications",
+      "acceptanceCriteria": [
+        "Users can start a rest timer after completing a set",
+        "Timer displays countdown from 1 or 2 minutes (user selectable)",
+        "Visual and/or audio notification when rest period completes",
+        "Timer integrates seamlessly into the WorkoutLogger component"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/rest-timer-icon.dim_64x64.png",
+          "operation": "create",
+          "description": "Add the generated rest timer icon with stopwatch design in energetic orange theme to frontend assets"
+        },
+        {
+          "path": "frontend/src/hooks/useRestTimer.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages rest timer state with duration selection (60 or 120 seconds), countdown logic, completion notifications, and timer controls (start, pause, reset)"
+        },
+        {
+          "path": "frontend/src/components/RestTimer.tsx",
+          "operation": "create",
+          "description": "Create a rest timer component displaying countdown with circular progress indicator, duration selection buttons (1 min / 2 min), start/pause/reset controls, and completion alert with audio notification using the generated rest-timer-icon.dim_64x64.png from frontend/public/assets/generated/"
+        },
+        {
+          "path": "frontend/src/components/WorkoutLogger.tsx",
+          "operation": "modify",
+          "description": "Integrate RestTimer component below each set input group with a toggle to show/hide the timer, automatically starting after set completion if enabled, and maintaining workout logging functionality"
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create workout plan management system for creating, saving, and following structured workout plans",
+      "acceptanceCriteria": [
+        "Users can create named workout plans with predefined exercises, sets, and reps",
+        "Users can view a list of their saved workout plans",
+        "Users can select a workout plan to follow during workout logging",
+        "Backend stores workout plans with stable types and CRUD operations"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/workout-plan-icon.dim_64x64.png",
+          "operation": "create",
+          "description": "Add the generated workout plan icon showing stacked documents or checklist to frontend assets"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add React Query hooks for fetching workout plans (useWorkoutPlans) and mutation for creating workout plans (useCreateWorkoutPlan) using the backend interface methods getWorkoutPlans and createWorkoutPlan"
+        },
+        {
+          "path": "frontend/src/components/WorkoutPlanList.tsx",
+          "operation": "create",
+          "description": "Create a component displaying saved workout plans in cards showing plan name, number of days, exercise count per day, with select button to load into workout logger and loading skeletons"
+        },
+        {
+          "path": "frontend/src/components/WorkoutPlanForm.tsx",
+          "operation": "create",
+          "description": "Create a form component for creating workout plans with plan name input, number of days selector, day-by-day exercise builder with exercise selection from library, sets/reps configuration, and submit button using the generated workout-plan-icon.dim_64x64.png from frontend/public/assets/generated/"
+        },
+        {
+          "path": "frontend/src/pages/WorkoutPlans.tsx",
+          "operation": "create",
+          "description": "Create a page displaying WorkoutPlanList and WorkoutPlanForm components with tabs or accordion layout, header with workout plan icon and title 'My Workout Plans'"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route definition for /plans path rendering the WorkoutPlans page component within the existing router configuration"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add navigation link to /plans route in the header navigation menu between log and history links with label 'Plans' and workout plan icon"
+        },
+        {
+          "path": "frontend/src/components/WorkoutLogger.tsx",
+          "operation": "modify",
+          "description": "Add workout plan selector dropdown above exercise inputs that loads selected plan's exercises and pre-fills the form with plan structure, with option to clear and log manually"
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Add a quick action card linking to /plans route with workout plan icon, title 'Workout Plans', and description 'Create and follow structured plans'"
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Design age-accessible interface for users 10-60 years with improved readability and usability",
+      "acceptanceCriteria": [
+        "Font sizes are large enough for readability (minimum 16px base)",
+        "Color contrast meets WCAG AA standards",
+        "Navigation is straightforward with clear labels and icons",
+        "Interactive elements have sufficient touch target sizes (minimum 44x44px)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update base font size to 16px minimum, increase button and interactive element padding for 44x44px touch targets, enhance text size scale for headings and body text"
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Adjust color contrast ratios in both light and dark themes to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text), increase base font size, improve focus indicator visibility"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Increase navigation link font sizes, add clearer icon labels, improve spacing for touch targets, simplify navigation structure with larger clickable areas"
+        },
+        {
+          "path": "frontend/src/components/WorkoutLogger.tsx",
+          "operation": "modify",
+          "description": "Increase input field sizes, button heights, and font sizes for better readability and touch interaction, add clearer labels and instructions"
+        },
+        {
+          "path": "frontend/src/components/ExerciseLibrary.tsx",
+          "operation": "modify",
+          "description": "Increase search input size, filter button sizes, and exercise list item height for easier interaction, improve label clarity"
+        },
+        {
+          "path": "frontend/src/components/ProgressDashboard.tsx",
+          "operation": "modify",
+          "description": "Increase stat card text sizes, improve number readability with larger fonts, enhance label contrast and spacing"
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Increase hero section font sizes, action card text and button sizes, improve overall page spacing for better visual hierarchy"
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add home workout category with bodyweight exercises to the exercise library",
+      "acceptanceCriteria": [
+        "Exercise library includes a 'Home Workout' muscle group category",
+        "Category contains at least 10 bodyweight exercises (push-ups, squats, planks, etc.)",
+        "Users can filter exercises to show only home workout options",
+        "Backend Exercise type supports categorization for home workouts"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/home-workout-icon.dim_64x64.png",
+          "operation": "create",
+          "description": "Add the generated home workout icon with house and fitness symbols to frontend assets"
+        },
+        {
+          "path": "frontend/src/components/ExerciseLibrary.tsx",
+          "operation": "modify",
+          "description": "Add 'Home Workout' to muscle group filter options with the generated home-workout-icon.dim_64x64.png from frontend/public/assets/generated/, add 10+ bodyweight exercises (Push-ups, Squats, Lunges, Planks, Burpees, Mountain Climbers, Jumping Jacks, Sit-ups, Leg Raises, Superman Hold) with category 'Bodyweight' and muscleGroup 'Home Workout' to the default exercise list"
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Add a quick action card or badge highlighting home workout category with home workout icon, linking to exercise library filtered by 'Home Workout'"
+        }
+      ]
+    }
+  ]
+}
