@@ -1,12 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Add rest timer, workout plan management, home workout category, and improve interface accessibility for users aged 10-60 years.
+**Goal:** Stabilize and debug the fitness app to ensure successful deployment and core functionality.
 
 **Planned changes:**
-- Add rest timer (1-2 minutes) between sets during workout logging
-- Create workout plan management system to create, save, and follow structured plans
-- Design interface with larger fonts, better contrast, and simplified navigation for age 10-60 accessibility
-- Add home workout category with bodyweight exercises to exercise library
+- Remove any broken or incomplete features causing deployment failures
+- Verify workout logging, exercise library, and workout history are working correctly
+- Ensure Internet Identity authentication properly protects all workout features
+- Test and fix any errors preventing successful app deployment
 
-**User-visible outcome:** Users can track rest periods between sets, create and follow workout plans, access home workout exercises, and enjoy a more readable and intuitive interface suitable for all ages.
+**User-visible outcome:** Users can reliably log in, log workouts with exercises/sets/reps/weight, browse the exercise library, view workout history, and see accurate statistics on their dashboard without encountering errors.

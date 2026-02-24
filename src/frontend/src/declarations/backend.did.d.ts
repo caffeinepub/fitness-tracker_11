@@ -21,6 +21,14 @@ export interface ProgressStats {
   'totalPlans' : bigint,
 }
 export interface Set { 'weight' : number, 'reps' : bigint }
+export interface UserProfile {
+  'fitnessGoal' : [] | [string],
+  'name' : string,
+  'email' : [] | [string],
+}
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface Workout {
   'entries' : Array<WorkoutEntry>,
   'timestamp' : bigint,
@@ -36,16 +44,23 @@ export interface WorkoutPlan {
   'dailyWorkouts' : Array<Array<WorkoutEntry>>,
 }
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addExercise' : ActorMethod<[string, string, string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createWorkoutPlan' : ActorMethod<
     [string, bigint, Array<Array<WorkoutEntry>>],
     undefined
   >,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getExerciseLibrary' : ActorMethod<[], Array<Exercise>>,
-  'getProgressStats' : ActorMethod<[], ProgressStats>,
-  'getWorkoutHistory' : ActorMethod<[], WorkoutHistory>,
+  'getProgressStats' : ActorMethod<[], [] | [ProgressStats]>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'getWorkoutHistory' : ActorMethod<[], [] | [WorkoutHistory]>,
   'getWorkoutPlans' : ActorMethod<[], Array<WorkoutPlan>>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
   'logWorkout' : ActorMethod<[Array<WorkoutEntry>], undefined>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

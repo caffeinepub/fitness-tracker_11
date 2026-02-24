@@ -1,168 +1,118 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add rest timer, workout plans, and age-accessible interface improvements",
+  "title": "Simplify and stabilize fitness app build",
   "requirements": [
     {
-      "id": "REQ-7",
-      "summary": "Add rest timer feature to workout logging with 1-2 minute countdown and notifications",
+      "id": "REQ-1",
+      "summary": "Remove incomplete or broken features causing deployment failures",
       "acceptanceCriteria": [
-        "Users can start a rest timer after completing a set",
-        "Timer displays countdown from 1 or 2 minutes (user selectable)",
-        "Visual and/or audio notification when rest period completes",
-        "Timer integrates seamlessly into the WorkoutLogger component"
+        "App deploys successfully without errors",
+        "All existing working features (workout logging, exercise library, authentication) remain functional"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/rest-timer-icon.dim_64x64.png",
-          "operation": "create",
-          "description": "Add the generated rest timer icon with stopwatch design in energetic orange theme to frontend assets"
-        },
-        {
-          "path": "frontend/src/hooks/useRestTimer.ts",
-          "operation": "create",
-          "description": "Create a custom hook that manages rest timer state with duration selection (60 or 120 seconds), countdown logic, completion notifications, and timer controls (start, pause, reset)"
-        },
-        {
-          "path": "frontend/src/components/RestTimer.tsx",
-          "operation": "create",
-          "description": "Create a rest timer component displaying countdown with circular progress indicator, duration selection buttons (1 min / 2 min), start/pause/reset controls, and completion alert with audio notification using the generated rest-timer-icon.dim_64x64.png from frontend/public/assets/generated/"
-        },
-        {
-          "path": "frontend/src/components/WorkoutLogger.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Integrate RestTimer component below each set input group with a toggle to show/hide the timer, automatically starting after set completion if enabled, and maintaining workout logging functionality"
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Create workout plan management system for creating, saving, and following structured workout plans",
-      "acceptanceCriteria": [
-        "Users can create named workout plans with predefined exercises, sets, and reps",
-        "Users can view a list of their saved workout plans",
-        "Users can select a workout plan to follow during workout logging",
-        "Backend stores workout plans with stable types and CRUD operations"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/workout-plan-icon.dim_64x64.png",
-          "operation": "create",
-          "description": "Add the generated workout plan icon showing stacked documents or checklist to frontend assets"
+          "description": "Review and remove any broken route configurations or incomplete feature imports that may cause deployment failures. Verify all four existing routes (dashboard, log workout, history, exercises) are properly configured and wrapped in AuthGuard."
         },
         {
           "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Add React Query hooks for fetching workout plans (useWorkoutPlans) and mutation for creating workout plans (useCreateWorkoutPlan) using the backend interface methods getWorkoutPlans and createWorkoutPlan"
-        },
-        {
-          "path": "frontend/src/components/WorkoutPlanList.tsx",
-          "operation": "create",
-          "description": "Create a component displaying saved workout plans in cards showing plan name, number of days, exercise count per day, with select button to load into workout logger and loading skeletons"
-        },
-        {
-          "path": "frontend/src/components/WorkoutPlanForm.tsx",
-          "operation": "create",
-          "description": "Create a form component for creating workout plans with plan name input, number of days selector, day-by-day exercise builder with exercise selection from library, sets/reps configuration, and submit button using the generated workout-plan-icon.dim_64x64.png from frontend/public/assets/generated/"
-        },
-        {
-          "path": "frontend/src/pages/WorkoutPlans.tsx",
-          "operation": "create",
-          "description": "Create a page displaying WorkoutPlanList and WorkoutPlanForm components with tabs or accordion layout, header with workout plan icon and title 'My Workout Plans'"
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route definition for /plans path rendering the WorkoutPlans page component within the existing router configuration"
+          "description": "Review all React Query hooks to ensure they properly check for authentication before executing. Remove any incomplete query or mutation hooks that reference non-existent backend methods. Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Add navigation link to /plans route in the header navigation menu between log and history links with label 'Plans' and workout plan icon"
-        },
-        {
-          "path": "frontend/src/components/WorkoutLogger.tsx",
-          "operation": "modify",
-          "description": "Add workout plan selector dropdown above exercise inputs that loads selected plan's exercises and pre-fills the form with plan structure, with option to clear and log manually"
-        },
-        {
-          "path": "frontend/src/pages/Dashboard.tsx",
-          "operation": "modify",
-          "description": "Add a quick action card linking to /plans route with workout plan icon, title 'Workout Plans', and description 'Create and follow structured plans'"
+          "description": "Verify navigation links are correctly wired and all imports resolve properly. Ensure the authorization component's authentication hooks are used correctly for login/logout functionality."
         }
       ]
     },
     {
-      "id": "REQ-9",
-      "summary": "Design age-accessible interface for users 10-60 years with improved readability and usability",
+      "id": "REQ-2",
+      "summary": "Ensure workout logger, exercise library, and workout history features work correctly for authenticated users",
       "acceptanceCriteria": [
-        "Font sizes are large enough for readability (minimum 16px base)",
-        "Color contrast meets WCAG AA standards",
-        "Navigation is straightforward with clear labels and icons",
-        "Interactive elements have sufficient touch target sizes (minimum 44x44px)"
+        "Users can log workouts with exercises, sets, reps, and weight",
+        "Exercise library displays all exercises with search and filtering",
+        "Workout history shows all logged workouts with correct data",
+        "Dashboard displays accurate workout statistics"
       ],
       "file_operations": [
         {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Update base font size to 16px minimum, increase button and interactive element padding for 44x44px touch targets, enhance text size scale for headings and body text"
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Adjust color contrast ratios in both light and dark themes to meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text), increase base font size, improve focus indicator visibility"
-        },
-        {
-          "path": "frontend/src/components/Layout.tsx",
-          "operation": "modify",
-          "description": "Increase navigation link font sizes, add clearer icon labels, improve spacing for touch targets, simplify navigation structure with larger clickable areas"
-        },
-        {
           "path": "frontend/src/components/WorkoutLogger.tsx",
           "operation": "modify",
-          "description": "Increase input field sizes, button heights, and font sizes for better readability and touch interaction, add clearer labels and instructions"
+          "description": "Verify the workout logging form correctly converts form data to WorkoutEntry format and successfully calls the logWorkout mutation. Ensure exercise selection from library works properly and all sets/reps/weight inputs are validated before submission."
         },
         {
           "path": "frontend/src/components/ExerciseLibrary.tsx",
           "operation": "modify",
-          "description": "Increase search input size, filter button sizes, and exercise list item height for easier interaction, improve label clarity"
+          "description": "Verify search functionality, muscle group filtering, and custom exercise addition work correctly. Ensure the component properly fetches and displays the exercise library from the backend using the useGetExerciseLibrary hook."
+        },
+        {
+          "path": "frontend/src/components/WorkoutHistoryList.tsx",
+          "operation": "modify",
+          "description": "Verify workout history displays correctly with proper date formatting, volume calculations, and exercise details. Ensure the component uses the useGetWorkoutHistory hook properly and handles empty states."
         },
         {
           "path": "frontend/src/components/ProgressDashboard.tsx",
           "operation": "modify",
-          "description": "Increase stat card text sizes, improve number readability with larger fonts, enhance label contrast and spacing"
+          "description": "Verify the dashboard fetches and displays accurate statistics using the useGetProgressStats hook. Ensure all three stat cards (Total Workouts, Workout Plans, Total Volume) show correct data with proper formatting."
         },
         {
           "path": "frontend/src/pages/Dashboard.tsx",
           "operation": "modify",
-          "description": "Increase hero section font sizes, action card text and button sizes, improve overall page spacing for better visual hierarchy"
+          "description": "Verify the dashboard page properly integrates the ProgressDashboard component and displays hero section with background image at frontend/public/assets/generated/hero-fitness.dim_1920x1080.png. Ensure call-to-action buttons correctly navigate to log workout and history pages."
+        },
+        {
+          "path": "frontend/src/pages/LogWorkout.tsx",
+          "operation": "modify",
+          "description": "Verify the WorkoutLogger component is properly integrated and all functionality works end-to-end for logging workouts."
+        },
+        {
+          "path": "frontend/src/pages/History.tsx",
+          "operation": "modify",
+          "description": "Verify the WorkoutHistoryList component is properly integrated and displays workout history correctly."
+        },
+        {
+          "path": "frontend/src/pages/ExerciseLibrary.tsx",
+          "operation": "modify",
+          "description": "Verify the ExerciseLibrary component is properly integrated and all library functionality works correctly."
         }
       ]
     },
     {
-      "id": "REQ-10",
-      "summary": "Add home workout category with bodyweight exercises to the exercise library",
+      "id": "REQ-3",
+      "summary": "Verify Internet Identity authentication works properly and all protected routes require login",
       "acceptanceCriteria": [
-        "Exercise library includes a 'Home Workout' muscle group category",
-        "Category contains at least 10 bodyweight exercises (push-ups, squats, planks, etc.)",
-        "Users can filter exercises to show only home workout options",
-        "Backend Exercise type supports categorization for home workouts"
+        "Login button successfully authenticates users via Internet Identity",
+        "All workout features are only accessible after authentication",
+        "Logout functionality works correctly"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/home-workout-icon.dim_64x64.png",
-          "operation": "create",
-          "description": "Add the generated home workout icon with house and fitness symbols to frontend assets"
+          "path": "frontend/src/components/AuthGuard.tsx",
+          "operation": "modify",
+          "description": "Verify the AuthGuard component properly uses the authorization component's authentication hooks (useInternetIdentity) to check authentication status. Ensure it shows the welcome screen with login button for unauthenticated users and properly renders children for authenticated users with correct loading states."
         },
         {
-          "path": "frontend/src/components/ExerciseLibrary.tsx",
+          "path": "frontend/src/hooks/useInternetIdentity.ts",
           "operation": "modify",
-          "description": "Add 'Home Workout' to muscle group filter options with the generated home-workout-icon.dim_64x64.png from frontend/public/assets/generated/, add 10+ bodyweight exercises (Push-ups, Squats, Lunges, Planks, Burpees, Mountain Climbers, Jumping Jacks, Sit-ups, Leg Raises, Superman Hold) with category 'Bodyweight' and muscleGroup 'Home Workout' to the default exercise list"
+          "description": "Verify the Internet Identity hook properly manages AuthClient creation, login/logout flows, identity state, and login status. Ensure the authorization component's authentication system is correctly integrated. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/pages/Dashboard.tsx",
+          "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Add a quick action card or badge highlighting home workout category with home workout icon, linking to exercise library filtered by 'Home Workout'"
+          "description": "Verify login and logout buttons work correctly using the useInternetIdentity hook from the authorization component. Ensure authentication state is properly reflected in the UI and queryClient.clear() is called on logout to clear all cached data."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify all routes are properly wrapped with AuthGuard to ensure authentication is required before accessing any workout features. Confirm the authorization component's authentication requirements are enforced across all routes."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Verify the actor hook properly creates and manages the backend actor instance based on Internet Identity authentication state. Ensure it invalidates dependent queries when the actor changes and properly integrates with the authorization component."
         }
       ]
     }

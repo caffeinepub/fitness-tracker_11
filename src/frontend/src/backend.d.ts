@@ -34,16 +34,32 @@ export interface ProgressStats {
     totalWorkouts: bigint;
     totalPlans: bigint;
 }
+export interface UserProfile {
+    fitnessGoal?: string;
+    name: string;
+    email?: string;
+}
 export interface Set_ {
     weight: number;
     reps: bigint;
 }
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
 export interface backendInterface {
     addExercise(name: string, muscleGroup: string, category: string): Promise<void>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createWorkoutPlan(name: string, days: bigint, dailyWorkouts: Array<Array<WorkoutEntry>>): Promise<void>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
     getExerciseLibrary(): Promise<Array<Exercise>>;
-    getProgressStats(): Promise<ProgressStats>;
-    getWorkoutHistory(): Promise<WorkoutHistory>;
+    getProgressStats(): Promise<ProgressStats | null>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    getWorkoutHistory(): Promise<WorkoutHistory | null>;
     getWorkoutPlans(): Promise<Array<WorkoutPlan>>;
+    isCallerAdmin(): Promise<boolean>;
     logWorkout(entries: Array<WorkoutEntry>): Promise<void>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
 }

@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import LogWorkout from './pages/LogWorkout';
 import History from './pages/History';
 import ExerciseLibraryPage from './pages/ExerciseLibrary';
+import AuthGuard from './components/AuthGuard';
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -12,25 +13,41 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: Dashboard,
+  component: () => (
+    <AuthGuard>
+      <Dashboard />
+    </AuthGuard>
+  ),
 });
 
 const logWorkoutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/log-workout',
-  component: LogWorkout,
+  component: () => (
+    <AuthGuard>
+      <LogWorkout />
+    </AuthGuard>
+  ),
 });
 
 const historyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/history',
-  component: History,
+  component: () => (
+    <AuthGuard>
+      <History />
+    </AuthGuard>
+  ),
 });
 
 const exercisesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/exercises',
-  component: ExerciseLibraryPage,
+  component: () => (
+    <AuthGuard>
+      <ExerciseLibraryPage />
+    </AuthGuard>
+  ),
 });
 
 const routeTree = rootRoute.addChildren([

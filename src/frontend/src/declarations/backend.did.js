@@ -8,6 +8,11 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
 export const Set = IDL.Record({ 'weight' : IDL.Float64, 'reps' : IDL.Nat });
 export const Exercise = IDL.Record({
   'name' : IDL.Text,
@@ -17,6 +22,11 @@ export const Exercise = IDL.Record({
 export const WorkoutEntry = IDL.Record({
   'sets' : IDL.Vec(Set),
   'exercise' : Exercise,
+});
+export const UserProfile = IDL.Record({
+  'fitnessGoal' : IDL.Opt(IDL.Text),
+  'name' : IDL.Text,
+  'email' : IDL.Opt(IDL.Text),
 });
 export const ProgressStats = IDL.Record({
   'totalVolume' : IDL.Float64,
@@ -38,22 +48,38 @@ export const WorkoutPlan = IDL.Record({
 });
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'addExercise' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createWorkoutPlan' : IDL.Func(
       [IDL.Text, IDL.Nat, IDL.Vec(IDL.Vec(WorkoutEntry))],
       [],
       [],
     ),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getExerciseLibrary' : IDL.Func([], [IDL.Vec(Exercise)], ['query']),
-  'getProgressStats' : IDL.Func([], [ProgressStats], ['query']),
-  'getWorkoutHistory' : IDL.Func([], [WorkoutHistory], ['query']),
+  'getProgressStats' : IDL.Func([], [IDL.Opt(ProgressStats)], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'getWorkoutHistory' : IDL.Func([], [IDL.Opt(WorkoutHistory)], ['query']),
   'getWorkoutPlans' : IDL.Func([], [IDL.Vec(WorkoutPlan)], ['query']),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'logWorkout' : IDL.Func([IDL.Vec(WorkoutEntry)], [], []),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
   const Set = IDL.Record({ 'weight' : IDL.Float64, 'reps' : IDL.Nat });
   const Exercise = IDL.Record({
     'name' : IDL.Text,
@@ -63,6 +89,11 @@ export const idlFactory = ({ IDL }) => {
   const WorkoutEntry = IDL.Record({
     'sets' : IDL.Vec(Set),
     'exercise' : Exercise,
+  });
+  const UserProfile = IDL.Record({
+    'fitnessGoal' : IDL.Opt(IDL.Text),
+    'name' : IDL.Text,
+    'email' : IDL.Opt(IDL.Text),
   });
   const ProgressStats = IDL.Record({
     'totalVolume' : IDL.Float64,
@@ -84,17 +115,28 @@ export const idlFactory = ({ IDL }) => {
   });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'addExercise' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createWorkoutPlan' : IDL.Func(
         [IDL.Text, IDL.Nat, IDL.Vec(IDL.Vec(WorkoutEntry))],
         [],
         [],
       ),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getExerciseLibrary' : IDL.Func([], [IDL.Vec(Exercise)], ['query']),
-    'getProgressStats' : IDL.Func([], [ProgressStats], ['query']),
-    'getWorkoutHistory' : IDL.Func([], [WorkoutHistory], ['query']),
+    'getProgressStats' : IDL.Func([], [IDL.Opt(ProgressStats)], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'getWorkoutHistory' : IDL.Func([], [IDL.Opt(WorkoutHistory)], ['query']),
     'getWorkoutPlans' : IDL.Func([], [IDL.Vec(WorkoutPlan)], ['query']),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'logWorkout' : IDL.Func([IDL.Vec(WorkoutEntry)], [], []),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   });
 };
 
